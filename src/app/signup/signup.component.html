@@ -1,0 +1,64 @@
+<div class="container" style="margin: 20px">
+  <div class="row">
+    <div class="col-sm-4 col-md-4"></div>
+    <div class="col-sm-4 col-md-4">
+      <div *ngIf="success">
+				<div class="alert alert-success">
+					{{ msg }}
+				</div>
+		 </div>
+  <form class="form-horizontal" [formGroup]="form" >
+    <fieldset>
+      <div id="legend">
+        <legend class="">Register</legend>
+      </div>
+      <div class="control-group">
+        <!-- Username -->
+        <label class="control-label"  for="username">Username</label>
+        <div class="controls">
+          <input type="text" [(ngModel)]="username" formControlName="username" placeholder="" class="form-control input-xlarge">
+          <div class="red" *ngIf="(form.get('username').hasError('required') && isSubmit)">username is required</div>
+        </div>
+      </div>
+   
+      <div class="control-group">
+        <!-- E-mail -->
+        <label class="control-label" for="email">E-mail</label>
+        <div class="controls">
+          <input type="email" [(ngModel)]="email" formControlName="email" name="email" placeholder="" class="form-control input-xlarge">
+          <div class="red" *ngIf="(form.get('email').hasError('required') && isSubmit)">email is required</div>
+          <div class="red" *ngIf="(!form.get('email').hasError('required') && form.get('email').hasError('email') && isSubmit)">email is invalid</div>
+        </div>
+      </div>
+   
+      <div class="control-group">
+        <!-- Password-->
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+          <input type="password" [(ngModel)]="password" formControlName="password" placeholder="" class="form-control input-xlarge">
+          <div class="red" *ngIf="(form.get('password').hasError('required') && isSubmit)">password is required</div>
+         </div>
+      </div>
+   
+      <div class="control-group">
+        <!-- Password -->
+        <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+        <div class="controls">
+          <input type="password" [(ngModel)]="password_confirm" formControlName="password_confirm" placeholder="" class="form-control input-xlarge">
+          <div class="red" *ngIf="(form.get('password_confirm').hasError('required') && isSubmit)">confirm password is required</div>
+          <div class="red" *ngIf="(!form.get('password_confirm').hasError('required') && isSubmit && form.controls.password_confirm.errors?.MatchPassword)">confirm password is required</div>
+        </div>
+      </div>
+   
+      <div class="control-group">
+        <!-- Button -->
+        <div class="controls">
+          <button class="btn btn-success" (click)='register(form);'>Register</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+    </div>
+    <div class="col-sm-4 col-md-4"></div>
+  </div>
+</div>

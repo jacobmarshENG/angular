@@ -1,0 +1,57 @@
+ 
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-md-4"></div>
+      <div class="col-sm-4 col-md-4" style="margin: 7% 0;">
+          <div class="panel panel-default">
+            <div class="panel-heading" style="padding: 12px 0px;">
+              <strong> Sign in to continue</strong>
+            </div>
+            <div class="panel-body">
+              <form role="form"  [formGroup]="form">
+                <fieldset>
+                  <div *ngIf="loginStatus">
+                      <div class="alert alert-{{ className }}">
+                        {{ msg }}
+                      </div>
+                   </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                          </span> 
+                          <input placeholder="Email" type="text" [(ngModel)]="email" formControlName="email" [ngClass]="{'form-control':true}">
+                        </div>
+                        <p class="red" *ngIf="(isSubmitted && form.get('email').hasError('required'))"> Email is Required </p>
+                        <p class="red" *ngIf="(!form.get('email').hasError('required') && form.get('email').hasError('email') && isSubmitted)">email is invalid</p>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                          </span>
+                          <input placeholder="Password" type="password"  [(ngModel)]="password" formControlName="password" [ngClass]="{'form-control':true}">
+                        </div>
+                        <p class="red" *ngIf="(isSubmitted && form.get('password').hasError('required'))"> Password is Required </p>
+                      </div>
+  
+                      <div class="form-group">
+                        <input type="submit" name="submit" (click)="submitForm(form)" class="btn btn-lg btn-primary btn-block" value="Login">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+            <div class="panel-footer ">
+              Don't have an account! <a routerLink="/signup"> Sign Up Here </a>
+            </div>
+                  </div>
+  
+    </div>
+      <div class="col-sm-4 col-md-4"></div>
+    </div>
+  </div>
+  
