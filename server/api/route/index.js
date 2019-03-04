@@ -63,6 +63,18 @@ router.post('/login', bodyParser.json(),function(req, res, next) {
   });
 });
 
+router.post('/delete', bodyParser.json(),function(req, res, next) {
+  var id = req.body.id;
+  var sql = "delete from users where id='"+id+"'";  
+  conn.query(sql, function (err, result) {
+    if (err){
+      res.send({'status':false,'err':err,'msg':'error in query'});
+    }else{
+        res.send({'status':true,'msg':'user deleted Successfully','statusCode':200,'result':result});   
+    }
+  });
+});
+
 
 
 module.exports = router;
